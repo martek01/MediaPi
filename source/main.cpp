@@ -9,9 +9,24 @@
  */
 
 #include <iostream>
+#include <sqlite3.h>
 
 int main(int argc, char **argv) {
-	std::cout << "Hello World" << std::endl;
+	sqlite3 *database;
+
+	// open database
+	int rc = sqlite3_open("test.db", &database);
+	if (rc) {
+		std::cout << "Can't open database: " << sqlite3_errmsg(database) << std::endl;
+		sqlite3_close(database);
+		return 1;
+	}
+
+	// do something
+	std::cout << "Database opened!" << std::endl;
+
+	// close database
+	sqlite3_close(database);
 
 	return 0;
 }
