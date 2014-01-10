@@ -1,3 +1,3 @@
-bin_PROGRAMS=mediapi
-mediapi_SOURCES=main.cpp
+bin_PROGRAMS = mediapi
+mediapi_SOURCES = main.cpp
 

@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT(MediaPi, 0.1)
+AC_INIT(MediaPi, 0.1, martek01@gmx.de)
 
 
 AC_CANONICAL_SYSTEM
