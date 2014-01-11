@@ -95,7 +95,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_mediapi_OBJECTS = main.$(OBJEXT)
 mediapi_OBJECTS = $(am_mediapi_OBJECTS)
-mediapi_LDADD = $(LDADD)
+am__DEPENDENCIES_1 =
+mediapi_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -295,6 +296,9 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 mediapi_SOURCES = main.cpp
+AM_CPPFLAGS = $(BOOST_CPPFLAGS)
+AM_LDFLAGS = -L$(BOOST_LDPATH)
+mediapi_LDADD = $(BOOST_FILESYSTEM_LIBS) $(BOOST_SYSTEM_LIBS)
 all: all-am
 
 .SUFFIXES:

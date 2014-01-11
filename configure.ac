@@ -12,10 +12,10 @@ AM_INIT_AUTOMAKE(foreign)
 AC_PROG_CXX
 AC_PROG_LIBTOOL
 
+AC_SEARCH_LIBS(sqlite3_initialize, sqlite3) 
+
 BOOST_REQUIRE
 BOOST_FILESYSTEM
-
-AC_SEARCH_LIBS(sqlite3_initialize, sqlite3) 
 
 AC_CONFIG_FILES(Makefile src/Makefile)
 AC_OUTPUT
