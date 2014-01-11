@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <sqlite3.h>
+#include <boost/filesystem/path.hpp>
 
 int main(int argc, char **argv) {
 	sqlite3 *database;
@@ -27,6 +28,9 @@ int main(int argc, char **argv) {
 
 	// close database
 	sqlite3_close(database);
+
+	// create boost filesystem path
+	boost::filesystem::path filePath("./test.db");
 
 	return 0;
 }
