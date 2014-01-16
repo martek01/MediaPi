@@ -19,7 +19,5 @@ Feature wish list
 
 Libraries
 ---------
-- Platinum UPnP: Provides UPnP server structure
-- Neptune: Runtime class library used by Platinum UPnP
 - SQLite: Handles database
 - Boost: Parses config file(s) and makes HTTP requests for IMDB

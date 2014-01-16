@@ -16,6 +16,13 @@
 .project
 .cproject
 .autotools
+.dirstamp
 .settings*
 .deps*
 *.cache*
+
+# Autotools files
+Makefile
+config.log
+config.status
+libtool

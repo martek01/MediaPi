@@ -3,38 +3,37 @@
  Name        : main.cpp
  Author      : Martek01
  Version     : 0.1
- Copyright   : 
- Description : UPnP media server for Raspberry Pi
+ Copyright   : 2014
+ Description : UPnP media server (for Raspberry Pi)
  ============================================================================
  */
 
-#include <iostream>
-#include <sqlite3.h>
-#include <boost/filesystem.hpp>
-//#include <Platinum.h>
+#include "configuration.h"
+
+#include "upnp/rootdevice.h"
 
 int main(int argc, char **argv) {
-	sqlite3 *database;
-
-	// open database
-	int rc = sqlite3_open("test.db", &database);
-	if (rc) {
-		std::cout << "Can't open database: " << sqlite3_errmsg(database) << std::endl;
-		sqlite3_close(database);
-		return 1;
-	}
-
-	// do something
-	std::cout << "Database opened!" << std::endl;
-
-	// close database
-	sqlite3_close(database);
+	/*
+	// create default configuration
+	Configuration config;
 	
-	// create boost filesystem path
-	boost::filesystem::path filePath("./test.db");
-
-	// create platinum
-	//PLT_UPnP upnp;
+	// parse command line arguments
+	config.parse(argc, argv);
+	
+	// parse config files
+	config.parseConfigFiles();
+	*/
+	
+	// test multicast sender
+	boost::asio::io_service ioService;
+	
+	RootDevice rootDevice(ioService, "");
+	rootDevice.setOSDescription("OS X/10.9.1");
+	rootDevice.setProductDescription("MediaPi/0.1");
+	
+	rootDevice.sendDeviceAvailable();
+	
+	ioService.run();
 
 	return 0;
 }

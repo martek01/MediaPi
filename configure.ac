@@ -12,10 +12,12 @@ AM_INIT_AUTOMAKE(foreign)
 AC_PROG_CXX
 AC_PROG_LIBTOOL
 
-AC_SEARCH_LIBS(sqlite3_initialize, sqlite3) 
+AC_SEARCH_LIBS([sqlite3_initialize], [sqlite3], [], AC_MSG_ERROR([Unable to find the sqlite3 library])) 
 
-BOOST_REQUIRE
-BOOST_FILESYSTEM
+AX_BOOST_BASE
+AX_BOOST_SYSTEM
+AX_BOOST_FILESYSTEM
+AX_BOOST_PROGRAM_OPTIONS
 
 AC_CONFIG_FILES(Makefile src/Makefile)
 AC_OUTPUT
