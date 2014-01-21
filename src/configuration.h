@@ -15,21 +15,30 @@
 #include <vector>
 
 #include <boost/filesystem/path.hpp>
+#include <boost/program_options.hpp>
+
+#include "configs.h"
 
 // media server configuration
 class Configuration {
 private:
 	// stores all config files
 	std::vector<boost::filesystem::path> _configFiles;
-
-	// host address for UPnP
-	std::string _hostAddress;
-	
-	// port used for UPnP
-	unsigned short _port;
 	
 	// root directories for the UPnP server
 	std::vector<boost::filesystem::path> _rootDirectories;
+	
+	// stores all options for boost::program_options
+	boost::program_options::variables_map _variablesMap;
+	
+	// global options
+	boost::program_options::options_description _globalOptions;
+	
+	// command-line only options
+	boost::program_options::options_description _commandLineOptions;
+	
+	// config file(s) only global options
+	boost::program_options::options_description _configGlobalOptions;
 
 public:
 	// create default configuration
@@ -48,6 +57,8 @@ public:
 	bool parseConfigFile(boost::filesystem::path configFilePath);
 	
 private:
+	// create option descriptions needed by the parsing
+	void createOptionDescriptions();
 	
 };
 

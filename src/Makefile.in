@@ -97,9 +97,12 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-am_mediapi_OBJECTS = main.$(OBJEXT) configuration.$(OBJEXT) \
-	database.$(OBJEXT) upnp/multicastsender.$(OBJEXT) \
-	upnp/rootdevice.$(OBJEXT)
+am_mediapi_OBJECTS = main.$(OBJEXT) database.$(OBJEXT) \
+	upnp/multicastsender.$(OBJEXT) upnp/rootdevice.$(OBJEXT) \
+	upnp/basicdevice.$(OBJEXT) upnp/controlpoint.$(OBJEXT) \
+	upnp/rootrequesthandler.$(OBJEXT) http/server.$(OBJEXT) \
+	http/connection.$(OBJEXT) http/response.$(OBJEXT) \
+	http/requesthandler.$(OBJEXT) http/requestparser.$(OBJEXT)
 mediapi_OBJECTS = $(am_mediapi_OBJECTS)
 am__DEPENDENCIES_1 =
 mediapi_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -298,7 +301,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = subdir-objects
-mediapi_SOURCES = main.cpp configuration.cpp database.cpp upnp/multicastsender.cpp upnp/rootdevice.cpp
+mediapi_SOURCES = main.cpp database.cpp upnp/multicastsender.cpp upnp/rootdevice.cpp upnp/basicdevice.cpp upnp/controlpoint.cpp upnp/rootrequesthandler.cpp http/server.cpp http/connection.cpp http/response.cpp http/requesthandler.cpp http/requestparser.cpp
 AM_CPPFLAGS = $(BOOST_CPPFLAGS)
 AM_LDFLAGS = $(BOOST_LDFLAGS)
 mediapi_LDADD = $(BOOST_FILESYSTEM_LIB) $(BOOST_SYSTEM_LIB) $(BOOST_PROGRAM_OPTIONS_LIB)
@@ -395,6 +398,28 @@ upnp/multicastsender.$(OBJEXT): upnp/$(am__dirstamp) \
 	upnp/$(DEPDIR)/$(am__dirstamp)
 upnp/rootdevice.$(OBJEXT): upnp/$(am__dirstamp) \
 	upnp/$(DEPDIR)/$(am__dirstamp)
+upnp/basicdevice.$(OBJEXT): upnp/$(am__dirstamp) \
+	upnp/$(DEPDIR)/$(am__dirstamp)
+upnp/controlpoint.$(OBJEXT): upnp/$(am__dirstamp) \
+	upnp/$(DEPDIR)/$(am__dirstamp)
+upnp/rootrequesthandler.$(OBJEXT): upnp/$(am__dirstamp) \
+	upnp/$(DEPDIR)/$(am__dirstamp)
+http/$(am__dirstamp):
+	@$(MKDIR_P) http
+	@: > http/$(am__dirstamp)
+http/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) http/$(DEPDIR)
+	@: > http/$(DEPDIR)/$(am__dirstamp)
+http/server.$(OBJEXT): http/$(am__dirstamp) \
+	http/$(DEPDIR)/$(am__dirstamp)
+http/connection.$(OBJEXT): http/$(am__dirstamp) \
+	http/$(DEPDIR)/$(am__dirstamp)
+http/response.$(OBJEXT): http/$(am__dirstamp) \
+	http/$(DEPDIR)/$(am__dirstamp)
+http/requesthandler.$(OBJEXT): http/$(am__dirstamp) \
+	http/$(DEPDIR)/$(am__dirstamp)
+http/requestparser.$(OBJEXT): http/$(am__dirstamp) \
+	http/$(DEPDIR)/$(am__dirstamp)
 
 mediapi$(EXEEXT): $(mediapi_OBJECTS) $(mediapi_DEPENDENCIES) $(EXTRA_mediapi_DEPENDENCIES) 
 	@rm -f mediapi$(EXEEXT)
@@ -402,16 +427,24 @@ mediapi$(EXEEXT): $(mediapi_OBJECTS) $(mediapi_DEPENDENCIES) $(EXTRA_mediapi_DEP
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f http/*.$(OBJEXT)
 	-rm -f upnp/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/configuration.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/database.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@http/$(DEPDIR)/connection.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@http/$(DEPDIR)/requesthandler.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@http/$(DEPDIR)/requestparser.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@http/$(DEPDIR)/response.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@http/$(DEPDIR)/server.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@upnp/$(DEPDIR)/basicdevice.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@upnp/$(DEPDIR)/controlpoint.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@upnp/$(DEPDIR)/multicastsender.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@upnp/$(DEPDIR)/rootdevice.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@upnp/$(DEPDIR)/rootrequesthandler.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -558,6 +591,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f http/$(DEPDIR)/$(am__dirstamp)
+	-rm -f http/$(am__dirstamp)
 	-rm -f upnp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f upnp/$(am__dirstamp)
 
@@ -569,7 +604,7 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR) upnp/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) http/$(DEPDIR) upnp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -615,7 +650,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR) upnp/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) http/$(DEPDIR) upnp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

@@ -11,7 +11,13 @@
 #ifndef ROOT_DEVICE_H
 #define ROOT_DEVICE_H
 
+#include <vector>
+
+#include <boost/asio/io_service.hpp>
+
 #include "multicastsender.h"
+
+class BasicDevice;
 
 // UPnP root device
 class RootDevice {
@@ -25,10 +31,14 @@ private:
 	// product name and version for discovery separated with a slash
 	std::string _productDescription;
 	
+	// 
 	std::string _location;
 	
 	// multicast sender for sending ssdp messages
 	MulticastSender _multicastSender;
+	
+	// list of UPnP devices belonging to this root device
+	std::vector<BasicDevice *> _devices;
 
 public:
 	// create UPnP root device with specific uuid
@@ -58,9 +68,15 @@ public:
 	// get product description
 	std::string productDescription() const;
 	
+	// add an UPnP device to this root device
+	void addDevice(BasicDevice *device);
+	
+	// remove an UPnP device from this root device
+	void removeDevice(BasicDevice *device);
+	
 private:
-	// creates basic message header for ssdp notify messages
-	void basicNotifyMessageWithSSDPType(std::stringstream &msgStream, int maxAge, std::string ssdpType) const;
+	// send notify multicast message with given type and headers (basic + specified additional)
+	void sendNotify(std::string ssdpType, std::string additionalHeader);
 };
 
 #endif /* ROOT_DEVICE_H */

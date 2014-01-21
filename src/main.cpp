@@ -8,9 +8,10 @@
  ============================================================================
  */
 
-#include "configuration.h"
+//#include "configuration.h"
 
-#include "upnp/rootdevice.h"
+#include "upnp/upnp.h"
+#include "http/http.h"
 
 int main(int argc, char **argv) {
 	/*
@@ -25,15 +26,29 @@ int main(int argc, char **argv) {
 	*/
 	
 	// test multicast sender
+	/*
 	boost::asio::io_service ioService;
 	
-	RootDevice rootDevice(ioService, "");
+	RootDevice rootDevice(ioService, "0123456789");
 	rootDevice.setOSDescription("OS X/10.9.1");
 	rootDevice.setProductDescription("MediaPi/0.1");
 	
+	BasicDevice device1("schemas-upnp.org", "device", "MediaServer");
+	rootDevice.addDevice(&device1);
+	
 	rootDevice.sendDeviceAvailable();
+	*/
+	/*
+	ControlPoint cp(ioService);
+	cp.searchDevices("MediaServer", 1);
 	
 	ioService.run();
-
+	*/
+	
+	RootRequestHandler requestHandler;
+	
+	http::Server server(80, requestHandler);
+	server.run();
+	
 	return 0;
 }
