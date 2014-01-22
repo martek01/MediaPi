@@ -1,9 +1,9 @@
 AUTOMAKE_OPTIONS = subdir-objects
 
 bin_PROGRAMS = mediapi
-mediapi_SOURCES = main.cpp mediaserver.cpp database.cpp  
+mediapi_SOURCES = main.cpp configuration.cpp database.cpp configs.cpp
 
-AM_CPPFLAGS = $(BOOST_CPPFLAGS) -I$(top_srcdir)/lib/platinum/include -I$(top_srcdir)/lib/neptune/include
-AM_LDFLAGS = $(BOOST_LDFLAGS) -L$(top_srcdir)/lib/platinum/lib -L$(top_srcdir)/lib/neptune/lib -framework foundation 
+AM_CPPFLAGS = $(BOOST_CPPFLAGS) -I/usr/local/include/platinum -I/usr/local/include/neptune
+AM_LDFLAGS = $(BOOST_LDFLAGS) -framework foundation 
 
-mediapi_LDADD = $(BOOST_FILESYSTEM_LIB) $(BOOST_SYSTEM_LIB) $(BOOST_PROGRAM_OPTIONS_LIB) -lplatinum -lneptune -laxtls -lpltmediaserver 
+mediapi_LDADD = $(BOOST_FILESYSTEM_LIB) $(BOOST_SYSTEM_LIB) $(BOOST_PROGRAM_OPTIONS_LIB) -lPlatinum -lNeptune -laxTLS -lPltMediaServer 

@@ -8,14 +8,9 @@
  ============================================================================
  */
 
-//#include "configuration.h"
-
-#include "mediaserver.h"
-
-#include <platinum.h>
+#include "configuration.h"
 
 int main(int argc, char **argv) {
-	/*
 	// create default configuration
 	Configuration config;
 	
@@ -24,17 +19,6 @@ int main(int argc, char **argv) {
 	
 	// parse config files
 	config.parseConfigFiles();
-	*/
-	
-	PLT_UPnP upnp;
-	
-	MediaServer server("/users/markusgrigull/movies/handbrake", "MediaPi");
-	PLT_DeviceHostReference serverRef(&server);
-	upnp.AddDevice(serverRef);
-	
-	upnp.Start();
-	
-	while (upnp.IsRunning());
 	
 	return 0;
 }
