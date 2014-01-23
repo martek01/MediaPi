@@ -98,7 +98,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_mediapi_OBJECTS = main.$(OBJEXT) configuration.$(OBJEXT) \
 	database.$(OBJEXT) configs.$(OBJEXT) \
-	directoryscanner.$(OBJEXT)
+	directoryscanner.$(OBJEXT) imdbsearch.$(OBJEXT)
 mediapi_OBJECTS = $(am_mediapi_OBJECTS)
 am__DEPENDENCIES_1 =
 mediapi_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -297,7 +297,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = subdir-objects
-mediapi_SOURCES = main.cpp configuration.cpp database.cpp configs.cpp directoryscanner.cpp
+mediapi_SOURCES = main.cpp configuration.cpp database.cpp configs.cpp directoryscanner.cpp imdbsearch.cpp
 AM_CPPFLAGS = $(BOOST_CPPFLAGS) -I/usr/local/include/platinum -I/usr/local/include/neptune
 AM_LDFLAGS = $(BOOST_LDFLAGS) -framework foundation 
 mediapi_LDADD = $(BOOST_FILESYSTEM_LIB) $(BOOST_SYSTEM_LIB) $(BOOST_PROGRAM_OPTIONS_LIB) -lPlatinum -lNeptune -laxTLS -lPltMediaServer 
@@ -399,6 +399,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/configuration.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/database.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/directoryscanner.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imdbsearch.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 
 .cpp.o:

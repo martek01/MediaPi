@@ -23,4 +23,7 @@ bool recursive;
 boost::filesystem::path databaseFile;
 bool uniqueFiles;
 
+// metadata search
+std::string imdbURL;
+
 }

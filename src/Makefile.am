@@ -1,7 +1,7 @@
 AUTOMAKE_OPTIONS = subdir-objects
 
 bin_PROGRAMS = mediapi
-mediapi_SOURCES = main.cpp configuration.cpp database.cpp configs.cpp directoryscanner.cpp
+mediapi_SOURCES = main.cpp configuration.cpp database.cpp configs.cpp directoryscanner.cpp imdbsearch.cpp
 
 AM_CPPFLAGS = $(BOOST_CPPFLAGS) -I/usr/local/include/platinum -I/usr/local/include/neptune
 AM_LDFLAGS = $(BOOST_LDFLAGS) -framework foundation 

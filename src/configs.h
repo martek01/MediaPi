@@ -29,6 +29,10 @@ extern bool recursive;
 extern boost::filesystem::path databaseFile;
 extern bool uniqueFiles;
 
+// metadata search
+extern std::string imdbURL;
+extern std::string imdbLanguage;
+
 }
 
 #endif /* CONFIGS_H */
