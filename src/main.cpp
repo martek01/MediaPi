@@ -10,7 +10,11 @@
 
 #include "configuration.h"
 
+#include "database.h"
+#include "directoryscanner.h"
+
 int main(int argc, char **argv) {
+/*
 	// create default configuration
 	Configuration config;
 	
@@ -19,6 +23,23 @@ int main(int argc, char **argv) {
 	
 	// parse config files
 	config.parseConfigFiles();
+	*/
+	
+	// set configurations
+	config::recursive = true;
+	config::databaseFile = "mediapi.db";
+	
+	// open database
+	Database db(config::databaseFile);
+	db.open();
+	
+	// scan directory
+	DirectoryScanner scanner(&db);
+	scanner.scanDirectory("/Users/markusgrigull/movies/handbrake");
+	
+	db.listFiles();
+	
+	db.close();
 	
 	return 0;
 }

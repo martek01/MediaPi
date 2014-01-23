@@ -23,6 +23,9 @@ class Database {
 private:
 	// stores database file path
 	boost::filesystem::path _databaseFile;
+	
+	// sqlite3 database handle
+	sqlite3 *_database;
 
 public:
 	// create default configuration
@@ -34,14 +37,24 @@ public:
 	// open database
 	bool open();
 	
-	// check whether the database is open
-	bool isOpen();
-	
 	// close the database
 	void close();
 	
-private:
+	// add a filepath to the database
+	void addFile(boost::filesystem::path filePath);
 	
+	// remove file by path from database
+	void removeFile(boost::filesystem::path filePath);
+	
+	// list all known files
+	void listFiles();
+	
+private:
+	// create new database structure
+	void createDatabaseStructure();
+	
+	// checks whether the database structure needs to be created
+	bool isDatabaseStructureCreated();
 };
 
 #endif /* DATABASE_H */

@@ -12,18 +12,22 @@
 #define CONFIGS_H
 
 #include <string>
+#include <vector>
+
+#include <boost/filesystem/path.hpp>
 
 namespace config {
 
 // UPnP
 extern std::string hostAddress;
 extern unsigned short port;
+extern std::string uuid;
 
-// root device
-extern std::string rootDeviceUuid;
-extern std::string rootDeviceOsDescription;
-extern std::string rootDeviceProductDescription;
-extern std::string rootDeviceLocation;
+// media
+extern std::vector<boost::filesystem::path> mediaDirectories;
+extern bool recursive;
+extern boost::filesystem::path databaseFile;
+extern bool uniqueFiles;
 
 }
 

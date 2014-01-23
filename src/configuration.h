@@ -54,7 +54,7 @@ public:
 	void parseConfigFiles();
 	
 	// parse config file
-	bool parseConfigFile(boost::filesystem::path configFilePath);
+	void parseConfigFile(boost::filesystem::path configFilePath);
 	
 private:
 	// create option descriptions needed by the parsing

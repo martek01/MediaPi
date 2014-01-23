@@ -15,11 +15,12 @@ namespace config {
 // UPnP
 std::string hostAddress;
 unsigned short port;
+std::string uuid;
 
-// root device
-std::string rootDeviceUuid;
-std::string rootDeviceOsDescription;
-std::string rootDeviceProductDescription;
-std::string rootDeviceLocation;
+// media
+std::vector<boost::filesystem::path> mediaDirectories;
+bool recursive;
+boost::filesystem::path databaseFile;
+bool uniqueFiles;
 
 }
